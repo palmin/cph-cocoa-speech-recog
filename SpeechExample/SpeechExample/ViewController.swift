@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     @IBAction func play(_ sender: AnyObject) {
         let utterance = AVSpeechUtterance(string: textView.text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = OutputVoiceTableSource.init().current
         
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
