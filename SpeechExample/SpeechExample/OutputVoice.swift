@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Foundation
 import Speech
 
-class OutputVoiceTableSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-    let voices = AVSpeechSynthesisVoice.speechVoices()
+class OutputVoice: NSObject, UITableViewDataSource, UITableViewDelegate {
+    let voices = AVSpeechSynthesisVoice.speechVoices().sorted(by: {
+        let locale0 = Locale.init(identifier: $0.language)
+        let locale1 = Locale.init(identifier: $1.language)
+        
+        let title0 = locale0.localizedString(forLanguageCode: $0.language)!
+        let title1 = locale0.localizedString(forLanguageCode: $1.language)!
+        return title0.lowercased() < title1.lowercased() 
+    })
+
     let defaultsKey = "output-voice"
     
     public var current:AVSpeechSynthesisVoice? {
@@ -44,7 +53,9 @@ class OutputVoiceTableSource: NSObject, UITableViewDataSource, UITableViewDelega
                  ?? UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: identifier)
         
         let voice = voices[indexPath.row]
-        cell.textLabel?.text = voice.name
+        let locale = Locale.init(identifier: voice.language)
+        let language = locale.localizedString(forLanguageCode: voice.language) ?? ""
+        cell.textLabel?.text = "\(language), \(voice.name)"
         cell.detailTextLabel?.text = "\(voice.language), \(voice.identifier)"
         
         return cell

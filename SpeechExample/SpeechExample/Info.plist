@@ -27,9 +27,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>User needs to approve recordings from microphone, this text is from Info.plist</string>
+	<string>User needs to approve recording from microphone too.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>User needs to approve speech recognition too.</string>
+	<string>User needs to approve speech recognition, this text is from Info.plist</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
