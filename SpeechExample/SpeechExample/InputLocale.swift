@@ -20,7 +20,7 @@ class InputLocale: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     public var current:Locale? {
         get {
-            // default to en_US
+            // default to English, United States
             let identifier = UserDefaults.standard.string(forKey: defaultsKey) ?? "en_US"
             return Locale.init(identifier: identifier)
         }
