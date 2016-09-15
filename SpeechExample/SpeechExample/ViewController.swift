@@ -47,6 +47,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         let locale = InputLocale.init().current
         recognizer = SFSpeechRecognizer.init(locale: locale!)
+        recognizer?.defaultTaskHint = .unspecified;
         request = SFSpeechAudioBufferRecognitionRequest()
         
         self.recognizer?.recognitionTask(with: request!, resultHandler: { (result, error) in
